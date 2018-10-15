@@ -11,35 +11,20 @@ expression = str(sys.argv[2])
 
 # file is a reference to the open file , f is a reference to the text of that file (as one big string)
 file = open(filename, "r")
-f = file.read()
-
-results = ''  # a string to store our results
-location = 0  # stores the last searched location in the file
+file_text = file.read()
 
 # You compile a pattern first and then "apply" it to search strings
 # this lets you set all kinds of options on the
 pattern = re.compile(expression)
 
-while True:
-    # Applies Regular Expression to your file text starting after the last place we found something
-    m = pattern.search(f, location)
+outText = ''
+results = pattern.finditer(file_text)
 
-    # If we didn't find anything or our string was the end of the file stop looping
-    if m is None or location >= len(f):
-        break
-
-    # add whatever the "MatchObject" was on our search to our new string
-    # (and a new line character to make it easier to read)
-    results += str(m) + '\n'
-
-    # Update location to the end of the found string so we don't search it again
-    location = m.end()
-
-
+for result in results:
+    outText += str(result) + '\n'
 
 # Outputs our re command results into a file
 out = open("test.txt", "w")
-out.write(str(results))
+out.write(str(outText))
 out.close()
-
 
