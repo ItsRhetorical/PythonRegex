@@ -1,0 +1,2 @@
+<_sre.SRE_Match object; span=(13, 19), match='search'>
+<_sre.SRE_Match object; span=(40, 46), match='search'>
